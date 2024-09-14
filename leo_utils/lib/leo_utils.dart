@@ -1,6 +1,7 @@
 library leo_utils;
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:intl/intl.dart';
 
@@ -162,22 +163,22 @@ monchip({text, color, textcolor, align = Alignment.center}) {
 
 padding(String t, double ec) {
   if (t == "a") {
-    return new Padding(padding: EdgeInsets.all(ec));
+    return Padding(padding: EdgeInsets.all(ec));
   }
 
   if (t == "t") {
-    return new Padding(padding: EdgeInsets.only(top: ec));
+    return Padding(padding: EdgeInsets.only(top: ec));
   }
   if (t == "b") {
-    return new Padding(padding: EdgeInsets.only(bottom: ec));
+    return Padding(padding: EdgeInsets.only(bottom: ec));
   }
 
   if (t == "l") {
-    return new Padding(padding: EdgeInsets.only(left: ec));
+    return Padding(padding: EdgeInsets.only(left: ec));
   }
 
   if (t == "r") {
-    return new Padding(padding: EdgeInsets.only(right: ec));
+    return Padding(padding: EdgeInsets.only(right: ec));
   }
 }
 
@@ -185,12 +186,12 @@ String get dateJour {
   //renvoyer la date sous format anglais pour les base de données MYSQL
 
   // format annee-mm-jour
-  var currentdate = new DateTime.now();
+  var currentdate = DateTime.now();
   var l = currentdate.month + 1;
 
-  var months = ("0" + (currentdate.month).toString());
+  var months = "0${currentdate.month.toString()}";
   var month = months.substring(months.length - 2);
-  var dates = ("0" + currentdate.day.toString());
+  var dates = "0${currentdate.day.toString()}";
   var date = dates.substring(dates.length - 2);
 
   var jour = currentdate.year.toString() + '-' + month + '-' + date;
@@ -199,13 +200,10 @@ String get dateJour {
 }
 
 String get myhour {
-  var currentdate = new DateTime.now();
+  var currentdate = DateTime.now();
 
-  var heure = currentdate.hour.toString() +
-      ":" +
-      currentdate.minute.toString() +
-      ":" +
-      currentdate.second.toString();
+  var heure =
+      "${currentdate.hour.toString()}:${currentdate.minute.toString()}:${currentdate.second.toString()}";
 
   return heure;
 }
@@ -229,13 +227,13 @@ dateformate3($date, context) {
   }
 }
 
-dateformate($date, context) {
+dateformate($date) {
   var ch1 = $date;
   var m = ch1.substring(5, 7);
   var moi = mois(m);
   var moiAng = moisAng(m);
 
-  if (lang(context)) {
+  if (lang(Get.context)) {
     return jour($date) +
         " " +
         ch1.substring(8) +
@@ -254,12 +252,12 @@ dateformate($date, context) {
   }
 }
 
-datemoi($date, context) {
+datemoi($date) {
   var ch1 = $date;
   var m = ch1.substring(5, 7);
   var moi = mois(m);
   var moiAng = moisAng(m);
-  return lang(context)
+  return lang(Get.context)
       ? ch1.substring(8) + " " + moi
       : ch1.substring(8) + " " + moiAng;
 }
@@ -321,7 +319,7 @@ String removeDiacritics(String str) {
   return str;
 }
 
-relativeDate(date, heure, context) {
+relativeDate(date, heure) {
   var mot = "";
   var dat1 = DateTime.parse(date);
   var dat2 = DateTime.now();
@@ -342,9 +340,9 @@ relativeDate(date, heure, context) {
     } else if (date1 == hier) {
       // hier
 
-      mot = lang(context) ? "Hier" : "Yesterday";
+      mot = lang(Get.context) ? "Hier" : "Yesterday";
     } else {
-      mot = datemoi(date, context);
+      mot = datemoi(date);
     }
   }
 

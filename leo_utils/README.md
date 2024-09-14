@@ -11,29 +11,94 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
 
-## Features
+# leo_utils
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+`leo_utils` est une collection de petites fonctions utilitaires conçues pour simplifier des tâches courantes dans le développement Flutter.
 
-## Getting started
+## Fonctionnalités
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+- **Manipulation de chaînes** : Fonctions d'aide pour formater et traiter les chaînes de caractères.
+- **Utilitaires de date/heure** : Méthodes pratiques pour gérer les opérations liées aux dates et heures.
+- **Aides pour l'UI** : Fonctions utilitaires pour améliorer vos widgets Flutter.
+- **Validation** : Fonctions pour simplifier la validation des entrées (par exemple, emails, numéros de téléphone).
+- **Autres utilitaires** : Diverses fonctions pratiques pour le développement d'applications.
 
-## Usage
+## Installation
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Pour utiliser `leo_utils` dans votre projet Flutter, ajoutez la ligne suivante dans votre fichier `pubspec.yaml` :
 
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  leo_utils:
+    git:
+     url: https://github.com/leonelottou/dev_ressources.git
+     path: leo_utils
+     ref: main 
+
 ```
 
-## Additional information
+Ensuite, mettez à jour vos dépendances avec la commande suivante :
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```bash
+flutter pub get
+```
+
+## Utilisation
+
+Voici un exemple rapide d'utilisation de certaines des fonctions utilitaires de `leo_utils` :
+
+### Exemple : Masquer un numéro de téléphone
+
+```dart
+import 'package:leo_utils/leo_utils.dart';
+
+void main() {
+  String numeroMasque = masquerNumeroTelephone('697123456');
+  print(numeroMasque); // Affiche : 697****56
+}
+```
+
+### Exemple : Validation d'email
+
+```dart
+import 'package:leo_utils/leo_utils.dart';
+
+void main() {
+  bool estValide =  validateEmail('exemple@gmail.com');
+  print(estValide); // Affiche : true
+}
+```
+
+### Exemple : Formatage de date
+
+```dart
+import 'package:leo_utils/leo_utils.dart';
+
+void main() {
+  String dateFormatee = dateformate(DateTime.now());
+  print(dateFormatee); // Affiche : 13 Sep 2024
+}
+```
+
+## Exemple  date relative au jour
+```dart
+
+String formattedDate = relativeDate('2023-09-13', '14:00');
+print(formattedDate); // Cela affichera "Hier" si la date est celle 
+
+```
+
+## Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à forker le dépôt et à proposer des pull requests avec de nouvelles fonctionnalités, des corrections de bugs ou des améliorations.
+
+1. Forker le dépôt
+2. Créer une nouvelle branche (`git checkout -b feature/votre-fonctionnalité`)
+3. Committer vos modifications (`git commit -am 'Ajouter une fonctionnalité'`)
+4. Pusher la branche (`git push origin feature/votre-fonctionnalité`)
+5. Créer une pull request
+
+## Licence
+
+Ce package est distribué sous la licence MIT. Voir le fichier [LICENSE](https://github.com/leonelottou/leo_utils/blob/main/LICENSE) pour plus d'informations.
